@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="shortcut icon" href="notes.svg" type="image/svg+xml">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+  </head>
+  <body>
+
+    <div class="delete-box" onclick="deleteSelectedNotes()" title="Hapus catatan terpilih">
+      <i class="uil uil-trash"></i>
+    </div>
+    
+    
+    <div class="search-container" >
+      <input type="text" id="searchInput" placeholder="Search notes...">
+      <i class=""></i>
+        <div class="menu-wrapper">
+
+      
+          <button onclick="logout()" class="logout-btn" title="Logout">
+  
+            <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+            
+            <div class="text">Logout</div>
+          </button>
+          
+          
+          
+           
+            <button  class="toggle-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" class="svgIcon-toggle sun-svg" viewBox="0 0 24 24">
+                  <g fill="#f1bd00">
+                      <circle r="5" cy="12" cx="12"></circle>
+                      <path d="m21 13h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm-17 0h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm13.66-5.66a1 1 0 0 1 -.66-.29 1 1 0 0 1 0-1.41l.71-.71a1 1 0 1 1 1.41 1.41l-.71.71a1 1 0 0 1 -.75.29zm-12.02 12.02a1 1 0 0 1 -.71-.29 1 1 0 0 1 0-1.41l.71-.66a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1 -.7.24zm6.36-14.36a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm0 17a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm-5.66-14.66a1 1 0 0 1 -.7-.29l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.29zm12.02 12.02a1 1 0 0 1 -.7-.29l-.66-.71a1 1 0 0 1 1.36-1.36l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.24z"></path>
+                  </g>
+              </svg>
+        
+              <svg xmlns="http://www.w3.org/2000/svg" class="svgIcon-toggle moon-svg" fill="#f9ba48" viewBox="0 0 384 512">
+                  <path d="m223.5 32c-123.5 0-223.5 100.3-223.5 224s100 224 223.5 224c60.6 0 115.5-24.2 155.8-63.4 5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6-96.9 0-175.5-78.8-175.5-176 0-65.8 36-123.1 89.3-153.3 6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"></path>
+              </svg>
+              
+          </button>
+            
+    </div>
+    
+  </div>
+  
+  
+  <ul class="wrapper">
+    <!-- nots tampil -->
+  </ul>
+  
+
+  <li class="add-box">
+    <i class="uil uil-plus"></i>
+  </li>
+  
+    
+<div class="full-note-popup">
+  <div class="full-note-content">
+      <span class="close-full-note">&times;</span>
+      <h2 id="full-note-title"></h2>
+      <p id="full-note-description"></p>
+  </div>
+</div>
+
+    <div class="popup-box" id="add-edit-popup">
+      <div class="popup">
+        <div class="content">
+          <header>
+            <p>Add a New Note</p>
+            <i class="uil uil-times close-popup"></i>
+          </header>        
+          <form action="#">
+            <div class="row title">
+              <label for="note-title">Title</label>
+              <input type="text" id="note-title" name="title" spellcheck="false" />
+            </div>
+            <div class="row description">
+              <label for="note-description">Description</label>
+              <textarea id="note-description" name="description" spellcheck="false"></textarea>
+            </div>
+            <div class="row background">
+              <label for="note-bg">Background</label>
+              <input type="color" id="note-bg" value="#ffffff">
+            </div>
+            
+            
+            <button type="submit" class="save-note">Add Note</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <script src="script.js">
+      
+    </script>
+    <audio id="alert-sound" src="sound.mp3" preload="auto"></audio>
+
+  </body>
+</html>

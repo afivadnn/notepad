@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="shortcut icon" href="register.svg" type="image/svg+xml">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" href="style-auth.css" />
+
+  
+</head>
+<body>
+  <div class="container">
+    <h2>Register</h2>
+    <form id="registerForm">
+      <input type="text" id="username" placeholder="Tambahkan Username" required><br>
+      <input type="password" id="password" placeholder="Tambahkan Password" required><br>
+      <button  type="submit" class="btn-1">
+        <div class="original">Register</div>
+        <div class="letters">
+          <span>R</span>
+          <span>E</span>
+          <span>G</span>
+          <span>I</span>
+          <span>S</span>
+          <span>T</span>
+          <span>E</span>
+          <span>R</span>
+        </div>
+      </button>
+    </form>
+    <p>Sudah punya akun? <a href="login.html">Login di sini</a></p>
+  </div>
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (localStorage.getItem(username)) {//cek username 
+        alert("Username sudah terdaftar!");
+      } else {
+        localStorage.setItem(username, password);//simpan data inputan
+        alert("Registrasi berhasil! Silakan login.");
+        window.location.href = "login.html";
+      }
+    });
+  </script>
+</body>
+</html>

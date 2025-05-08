@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="shortcut icon" href="login.svg" type="image/svg+xml">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="style-auth.css" />
+
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required><br>
+      <input type="password" id="password" placeholder="Password" required><br>
+
+      <button  type="submit" class="btn-1">
+        <div class="original">Login</div>
+        <div class="letters">
+          <span>L</span>
+          <span>O</span>
+          <span>G</span>
+          <span>I</span>
+          <span>N</span>
+        </div>
+      </button>
+      
+    </form>
+  
+    <p>Belum punya akun? <a href="register.html">Register di sini</a></p>
+  
+  </div>
+ 
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      const storedPassword = localStorage.getItem(username);
+
+      if (storedPassword && storedPassword === password) {// username dan password cocok
+        localStorage.setItem("loggedInUser", username); 
+        //nyimpen status login ke localStorage
+        window.location.href = "index.html";
+      } else {
+        alert("Username atau password salah!");
+      }
+    });
+  </script>
+</body>
+</html>
